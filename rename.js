@@ -11,6 +11,7 @@ var fs = require('fs');
 
 var maxIndex = 10;
 var customText = "_";
+const archiveFolder = "00_Archive";
 
 var fileFolderPath = "files";
 var newFileArray = [];
@@ -24,6 +25,11 @@ fs.readdir(fileFolderPath, (err, files) => {
     files.forEach((oldFile, index) => {
         var appendIndex = 1;
         var newFile = getNewFile(oldFile, maxIndex, appendIndex);
+        // If first newFile is equal to old file skip
+        if (oldFile.includes(archiveFolder)) {
+            console.log(">>> SKIP: " + archiveFolder);
+            return;
+        }
         // If first newFile is equal to old file skip
         if (newFile == oldFile) {
             console.log(">>> SKIP: " + oldFile);
