@@ -59,7 +59,7 @@ fs.readdir(fileFolderPath, (err, files) => {
 
 getNewFile = (file, maxIndex, appendingText) => {
     let dotIndex = file.indexOf(".");
-    let fileSubstring = file.substr(0, maxIndex);
+    let fileSubstring = file.substr(0, Math.min(maxIndex,dotIndex));
     let fileEnding = file.substr(dotIndex, file.length);
     let newFile = fileSubstring + customText + appendingText + fileEnding;
     return newFile;
